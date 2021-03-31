@@ -1,17 +1,39 @@
-import React from 'react';
+import React, {
+  useState,
+  useEffect
+} from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom'; //entrypoint  injecting js
 import './index.scss';
-import 'leaflet/dist/leaflet.css';
-import Input from './input';
-import Info from './info';
-import Map from './map';
+import Input from './Input';
+import Info from './Info';
+import Map from './Map';
+
+
+
+
+const ip = '8.8.8.8'
+const url = api + ip
 
 function App() {
+  const [info, setInfo] = useState([]);
+  const getInfo = async () => {
+    const info = await axios(url)
+   
+
+    setInfo(info)
+  }
+
+  useEffect(() => {
+    getInfo();
+
+
+  }, [])
   return (
     <section>
       <Input/>
-      <Info/>
-      <Map/>
+      <Info info={info}/>
+      <Map info={info}/>
     </section>
   )
 };

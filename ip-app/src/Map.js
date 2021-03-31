@@ -8,16 +8,16 @@ import {
 import 'leaflet/dist/leaflet.css';
 
 
-function Map() {
+function Map({data}) {
   return ( 
-    <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true}>
+    <MapContainer center={[37.38605, -122.08385]} zoom={13} scrollWheelZoom={true}>
       <TileLayer
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <Marker position={[51.505, -0.09]}>
+      <Marker position={[37.38605,-122.08385]}>
       <Popup>
-        A pretty CSS3 popup. <br /> Easily customizable.
+        A pretty CSS3 popup. <br/> Easily customizable.
       </Popup>
       </Marker>
     </MapContainer>
