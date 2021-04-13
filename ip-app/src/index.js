@@ -15,11 +15,13 @@ const App = () => {
   const [info, setInfo] = useState({});
  
   const getInfo = async (ip) => {
+
    try  {
-      const api = 'https://geo.ipify.org/api/v1?Q&ipAddress=';
-      const url = api + ip;
+      const api = 'https://geo.ipify.org/api/v1?';
+      const ipUrl = 'ipAddress=' + ip;
+      const url = ip ? api + ipUrl: api;
       const info = await axios.get(url);
-      console.log(info)
+
       setInfo(info)
    }  catch(error){
      console.log(error);
@@ -28,6 +30,10 @@ const App = () => {
   const handleClick = (value) =>{
     getInfo(value);
   }
+  
+  useEffect( () => {
+    getInfo();
+  }, [])
  
   return (
     <section>
