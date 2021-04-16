@@ -1,27 +1,28 @@
 import React from 'react';
 
 const Info = ({info}) => {
-  
-  
+
   return(
    
     <section className="info">
-      <div>
-        <p>IP address:</p>
-        <p>{(info !== undefined) ? info.ip:''}</p>
+      <div className="wrapper">
+        <p className="description">IP ADRESS:</p>
+        <p className="bold">{(info !== undefined) ? info.ip:''}</p>
       </div>
-      <div>
-        <p>Location:</p>
-        <p>{info ? `${info.location.city}, ${info.location.country}`:''}</p>
+      <div className="border"></div>
+      <div className="wrapper">
+        <p className="description">LOCATION:</p>
+        <p className="bold">{info ? `${info.location.city}, ${info.location.country}`:''}</p>
       </div>
-      <div>
-        <p>Timezone:</p>
-        <p>{info ? info.location.timezone:''}</p>
+      <div className="border"></div>
+      <div className="wrapper">
+        <p className="description">TIMEZONE:</p>
+        <p className="bold">{info ? info.location.timezone:''}</p>
       </div>
-
-      <div>
-        <p>ISP:</p>
-        <p>{info ? info.isp:''}</p>
+      <div className="border"></div>
+      <div className="wrapper">
+        <p className="description">ISP:</p>
+        <p className="bold">{info ? info.isp:''}</p>
       </div>
     </section>
  )

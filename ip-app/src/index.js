@@ -17,7 +17,7 @@ const App = () => {
   const getInfo = async (ip) => {
 
    try  {
-      const api = 'https://geo.ipify.org/api/v1?';
+      const api = 'https://geo.ipify.org/api/v1?apiKey=';
       const ipUrl = 'ipAddress=' + ip;
       const url = ip ? api + ipUrl: api;
       const info = await axios.get(url);
@@ -37,8 +37,8 @@ const App = () => {
  
   return (
     <section>
-      <Input onClick={handleClick}/>
-      <Info info={info.data}/>
+      <Input info={info.data} onClick={handleClick}/>
+      {/* <Info info={info.data}/> */}
       <Map info={info.data}/>
     </section>
   )

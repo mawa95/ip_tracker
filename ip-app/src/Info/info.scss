@@ -2,4 +2,34 @@ section.info{
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    background: white;
+    height: 150px;
+    max-width: 1110px;
+    width: 1110px;
+    z-index: 1;
+    border-radius: 25px; 
+}
+.bold{
+    font-family: Rubik;
+    font-size: 25px;
+    font-weight: 500;
+}
+.wrapper{
+    max-width: 300px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-direction: column;
+    
+}
+.description{
+    color: grey;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+.border{
+    border-right: 1px solid rgba(0,0,0, 0.2);
+    height: 40%;
 }

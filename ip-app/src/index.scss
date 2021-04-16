@@ -4,7 +4,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+   
+}
+#root{
+    max-width: 1440px;
+    margin: 0 auto;
 }
 .leaflet-container{
-    height: 500px;
+    height: 520px;
+    margin-top: -50px;
+    z-index: 0;
 }
