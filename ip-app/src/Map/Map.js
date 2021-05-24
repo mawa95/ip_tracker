@@ -40,11 +40,13 @@ function MyMarker ({info}){
       </Marker>
     )
 }
-function Map({info}) {
+function Map({info, loading}) {
  
 
 return ( 
+      
       <MapContainer center={[(info !== undefined) ? info.location.lat : '', (info !== undefined) ? info.location.lng : '']} zoom={15} scrollWheelZoom={false}>
+      {loading && <h1>loading...</h1>}
         <TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

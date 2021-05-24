@@ -3,10 +3,11 @@ import React, {
   useEffect
 } from 'react';
 import Info from '../Info/Info';
-function Input ({onClick, info}) {
-  const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false);
 
+function Input ({onClick, info, serverError}) {
+  const [value, setValue] = useState('');
+  const [isTypoError, setIsTypoError] = useState(false);
+  
   const handleSubmit = e =>{
     e.preventDefault();
 
@@ -15,12 +16,12 @@ function Input ({onClick, info}) {
     const regexDomain = /^(?=.{1,253}\.?$)(?:(?!-|[^.]+_)[A-Za-z0-9-_]{1,63}(?<!-)(?:\.|$)){2,}$/
 
 
-    if (value.match(regexIp) || value.match(regexDomain)){
-      setIsError(false)
+    if (value.match(regexIp) || value.match(regexDomain) ){
+      setIsTypoError(false)
       onClick(value);
     
     } else  {
-      setIsError(true);
+      setIsTypoError(true);
       
     }
   }
@@ -38,9 +39,12 @@ function Input ({onClick, info}) {
         <button type="submit"  >
           <svg xmlns="http://www.w3.org/2000/svg" width="11" height="14"><path fill="none" stroke="#FFF" strokeWidth="3" d="M2 1l6 6-6 6"/></svg>
         </button>
-        {isError ? <p className="error">Invalid IP adress or domain</p> : <p></p>}
+
+        {(isTypoError || serverError) ? <p className="error">Please enter a valid IP adress or domain</p> : <p></p>}
       </form>
+
       <Info info={info}/>
+
     </section>
   )
 }

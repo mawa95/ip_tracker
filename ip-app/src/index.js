@@ -14,10 +14,13 @@ import Map from './Map/Map';
 const App = () => {
   const [info, setInfo] = useState({});
   const [isLoading, setIsLoading] = useState(true);
-   const [isError, setIsError] = useState(false);
+  const [isServerError, setIsServerError] = useState('');
+
   const getInfo = async (ip) => {
 
    try  {
+      setIsServerError(false)
+      setIsLoading(true)
       const apiKey = `${process.env.REACT_APP_API_KEY}`
       const api = 'https://geo.ipify.org/api/v1?apiKey=at_' + apiKey;
      
@@ -25,32 +28,40 @@ const App = () => {
       const domainUrl = "domain=" + ip;
       const url = ip ? api + domainUrl: api;
       const info = await axios.get(url);
-      console.log(info);
       setInfo(info)
+      setIsLoading(false)
+      setIsServerError(false)
    }  catch(error){
-    console.log({error});
+      setIsServerError(error);
+      setIsLoading(false)
+     
    }
   }
+
   const handleClick = (value) =>{
     getInfo(value);
   }
-  const locateMe=()=>{
-    getInfo();
-  }
+  
   useEffect( () => {
     getInfo();
   }, [])
+
+
  
   return (
+    
     <section>
-      <button className="locateMeButton tooltip" onClick={() => locateMe()}>
-      ?
+      {isLoading && <div className="loader"></div>}
+      <button className="locateMeButton tooltip" onClick={() => getInfo()}>?
         <span className="tooltiptext">Locate me</span>
       </button>
-      <Input info={info.data} onClick={handleClick}/>
-      {/* <Info info={info.data}/> */}
-      <Map info={info.data}/>
+      <Input serverError={isServerError} info={info.data} onClick={handleClick}/>
+     
+      
+      <Map info={info.data} loading={isLoading}/>
+      
     </section>
+    
   )
 };
 
